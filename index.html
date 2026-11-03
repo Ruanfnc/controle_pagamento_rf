@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mensalidades</title>
+<meta name="theme-color" content="#1c3f8f">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icone.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+
+<!-- Login -->
+<main id="tela-login" class="login" hidden>
+  <form id="form-login" class="login-card">
+    <h1 id="login-escola">Mensalidades</h1>
+    <p class="sub">Entre com a senha da escola.</p>
+    <div class="f"><label for="senha">Senha</label><input id="senha" type="password" autocomplete="current-password" required></div>
+    <div class="err" id="login-erro" hidden></div>
+    <button class="btn primary" type="submit">Entrar</button>
+  </form>
+</main>
+
+<!-- App -->
+<div id="tela-app" hidden>
+  <div class="wrap">
+    <div class="alerta" id="aviso-pix" hidden>
+      <span>Cadastre a chave Pix da escola para o código Pix ir junto nas cobranças.</span>
+      <button class="btn sm primary" id="btn-aviso-pix">Cadastrar chave Pix</button>
+    </div>
+
+    <header class="topo">
+      <div>
+        <h1 id="nome-escola">Mensalidades</h1>
+        <div class="sub" id="sub"></div>
+      </div>
+      <div class="topo-acoes">
+        <button class="btn primary" id="btn-novo">+ Novo aluno</button>
+        <button class="btn" id="btn-menu" aria-haspopup="true" aria-label="Mais opções">⋯</button>
+      </div>
+    </header>
+
+    <nav class="abas" aria-label="Seções">
+      <a href="#painel" data-aba="painel">Mensalidades</a>
+      <a href="#alunos" data-aba="alunos">Alunos</a>
+      <a href="#turmas" data-aba="turmas">Turmas</a>
+    </nav>
+
+    <!-- Aba: mensalidades -->
+    <section id="aba-painel" class="aba">
+      <div class="linha-mes">
+        <label for="mes" class="lbl">Mês</label>
+        <select id="mes"></select>
+      </div>
+      <section class="board" aria-label="Resumo do mês">
+        <div class="board-top">
+          <div>
+            <div class="lbl">Recebido no mês</div>
+            <div class="big" id="recebido"></div>
+          </div>
+          <div class="count" id="pct"></div>
+        </div>
+        <div class="bar" id="bar"></div>
+        <div class="tally" id="tally"></div>
+      </section>
+      <div class="alerta" id="alerta-gerar" hidden></div>
+      <div class="tools">
+        <input type="search" id="busca" placeholder="Buscar aluno ou responsável" aria-label="Buscar">
+        <select id="filtro-turma" aria-label="Turma"></select>
+      </div>
+      <button class="cobrar-cta" id="btn-cobrar">
+        <span><b id="cobrar-titulo">Cobrar quem falta pagar</b><span class="sub" id="cobrar-sub"></span></span>
+        <span aria-hidden="true">→</span>
+      </button>
+      <div class="count" id="mostrando"></div>
+      <div class="list" id="lista"></div>
+    </section>
+
+    <!-- Aba: alunos -->
+    <section id="aba-alunos" class="aba" hidden>
+      <div class="tools">
+        <input type="search" id="busca-alunos" placeholder="Buscar aluno" aria-label="Buscar aluno">
+        <label class="check"><input type="checkbox" id="ver-inativos"> Mostrar inativos</label>
+      </div>
+      <div id="aguardando"></div>
+      <div class="list" id="lista-alunos"></div>
+    </section>
+
+    <!-- Aba: turmas -->
+    <section id="aba-turmas" class="aba" hidden>
+      <p class="sub">O valor da turma é sugerido no cadastro. Mudar aqui não altera a mensalidade de quem já está matriculado.</p>
+      <div class="list" id="lista-turmas"></div>
+      <div class="actions"><button class="btn" id="btn-nova-turma">+ Nova turma</button></div>
+    </section>
+  </div>
+
+  <div class="menu" id="menu" hidden>
+    <button class="menu-item" id="m-config">Configurações e chave Pix</button>
+    <a class="menu-item" id="m-csv" href="#">Exportar mês em planilha (CSV)</a>
+    <a class="menu-item" id="m-backup" href="/api/backup">Baixar backup dos dados</a>
+    <button class="menu-item" id="m-sair">Sair</button>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

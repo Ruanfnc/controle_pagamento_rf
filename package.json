@@ -1,0 +1,16 @@
+{
+  "name": "mensalidades-simples",
+  "version": "1.0.0",
+  "description": "Gestão de mensalidades da escola de futebol com cobrança pelo WhatsApp e Pix copia e cola",
+  "private": true,
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.js",
+    "seed:demo": "node --disable-warning=ExperimentalWarning src/seed-demo.js",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/*.test.js\""
+  }
+}
