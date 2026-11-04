@@ -5,6 +5,5 @@ COPY package.json ./
 COPY src ./src
 COPY public ./public
 RUN mkdir -p /data
-VOLUME ["/data"]
 EXPOSE 3000
 CMD ["node", "--disable-warning=ExperimentalWarning", "src/server.js"]
